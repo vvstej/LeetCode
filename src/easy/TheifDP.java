@@ -33,7 +33,7 @@ public class TheifDP {
 	  }
 	
 	public static void main(String[] arg){
-		int[] nums = new int[]{20,10,35,15};
+		int[] nums = new int[]{};
 		System.out.println(new TheifDP().rob(nums));
 	}
 }
