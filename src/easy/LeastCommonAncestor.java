@@ -8,8 +8,8 @@ public class LeastCommonAncestor {
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 		List<TreeNode> ancestorList1 = new ArrayList<TreeNode>();
 		List<TreeNode> ancestorList2 = new ArrayList<TreeNode>();
-		boolean found1 = inOrderTraversal(root, p.val, ancestorList1);
-		boolean found2 = inOrderTraversal(root, q.val, ancestorList2);
+		boolean found1 = inOrderTraversal(root, p, ancestorList1);
+		boolean found2 = inOrderTraversal(root, q, ancestorList2);
 		if (!found1 || !found2) {
 			return null;
 		}
@@ -48,17 +48,17 @@ public class LeastCommonAncestor {
 		return null;
 	}
 
-	public static boolean inOrderTraversal(TreeNode node, int target,
+	public static boolean inOrderTraversal(TreeNode node, TreeNode p,
 			List<TreeNode> ancestorList) {
 		if (node == null) {
 			return false;
 		}
-		if (node.val == target) {
+		if (node == p) {
 			return true;
 		} else {
-			boolean found = inOrderTraversal(node.left, target, ancestorList);
+			boolean found = inOrderTraversal(node.left, p, ancestorList);
 			if (!found) {
-				found = inOrderTraversal(node.right, target, ancestorList);
+				found = inOrderTraversal(node.right, p, ancestorList);
 				if (!found) {
 					return false;
 				} else {
@@ -74,30 +74,32 @@ public class LeastCommonAncestor {
 	}
 	
 	public static void main(String[] arg){
-		TreeNode root = new TreeNode(4);
-		TreeNode n1 = new TreeNode(2);
-		TreeNode n2 = new TreeNode(7);
+		TreeNode root = new TreeNode(3);
+		TreeNode n1 = new TreeNode(5);
+		TreeNode n2 = new TreeNode(1);
 
-		TreeNode n3 = new TreeNode(1);
-		TreeNode n4 = new TreeNode(3);
-		TreeNode n5 = new TreeNode(6);
+		TreeNode n3 = new TreeNode(6);
+		TreeNode n4 = new TreeNode(2);
+		TreeNode n5 = new TreeNode(0);
 		n5.left = new TreeNode(5);
-		TreeNode n6 = new TreeNode(9);
-		TreeNode n7 = new TreeNode(8);
-		n6.left = n7;
-		TreeNode n8 = new TreeNode(40);
-		TreeNode n9 = new TreeNode(23);
-		TreeNode n10 = new TreeNode(37);
-		n8.left = n9;
-		n8.right = n10;
-		n6.right = n8;
+		TreeNode n6 = new TreeNode(8);
+		TreeNode n7 = new TreeNode(7);
+		//n6.left = n7;
+		TreeNode n8 = new TreeNode(4);
+		//TreeNode n9 = new TreeNode(23);
+		//TreeNode n10 = new TreeNode(37);
+		//n8.left = n9;
+		//n8.right = n10;
+		//n6.right = n8;
 		n1.left = n3;
 		n1.right = n4;
 		n2.left = n5;
 		n2.right = n6;
 		root.left = n1;
 		root.right = n2;
-		TreeNode result = new LeastCommonAncestor().lowestCommonAncestor(root, n9, n4);
+		n4.left = n7;
+		n4.right = n8;
+		TreeNode result = new LeastCommonAncestor().lowestCommonAncestor(root, n1, n3);
 		if(result!=null){
 			System.out.println(result.val);
 		}
