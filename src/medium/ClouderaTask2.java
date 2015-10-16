@@ -14,20 +14,20 @@ public class ClouderaTask2 {
 		if(A.length==1 || B.length==1){
 			return 1;
 		}
-		List<Pair<Integer,Integer>> listOfPairs = new ArrayList<Pair<Integer,Integer>>();
+		List<Pair1<Integer,Integer>> listOfPairs = new ArrayList<Pair1<Integer,Integer>>();
 		IntegerPairComparator integerComparator = new IntegerPairComparator();
 		for(int i=0;i<A.length;i++){
-			listOfPairs.add(new Pair<Integer,Integer>(A[i],B[i]));
+			listOfPairs.add(new Pair1<Integer,Integer>(A[i],B[i]));
 		}
 		Collections.sort(listOfPairs, integerComparator);
-		Pair<Integer,Integer> pair1 = listOfPairs.get(0);
+		Pair1<Integer,Integer> pair1 = listOfPairs.get(0);
 		int countDisjointPairs = 0;
 		for(int i=1;i<listOfPairs.size();i++){
-			Pair<Integer,Integer> pair2 = listOfPairs.get(i);
+			Pair1<Integer,Integer> pair2 = listOfPairs.get(i);
 			if(pair2.getX() <= pair1.getY()){
 				int lowerBound = Math.min(pair1.getX(), pair2.getX());
 				int upperBound = Math.max(pair1.getY(), pair2.getY());
-				Pair<Integer,Integer> newPair = new Pair<Integer,Integer>(lowerBound, upperBound);
+				Pair1<Integer,Integer> newPair = new Pair1<Integer,Integer>(lowerBound, upperBound);
 				pair1 = newPair;
 			}else{
 				System.out.println(pair1.getX()+" "+pair1.getY());
@@ -50,9 +50,9 @@ public class ClouderaTask2 {
 	
 }
 
-class IntegerPairComparator implements Comparator<Pair<Integer,Integer>> {
+class IntegerPairComparator implements Comparator<Pair1<Integer,Integer>> {
 	@Override
-	public int compare(Pair<Integer,Integer> o1, Pair<Integer,Integer> o2) {
+	public int compare(Pair1<Integer,Integer> o1, Pair1<Integer,Integer> o2) {
 		return o1.getX().compareTo(o2.getX());
 	}
 

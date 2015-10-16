@@ -21,7 +21,7 @@ public class KthLargest {
 	}
 
 	public static void main(String[] arg) {
-		System.out.println(new KthLargest().findKthLargest(new int[] { 3, 2, 1,
-				6, 5 }, 5));
+		System.out.println(new KthLargest().findKthLargest(new int[] { 25,-6,8,100,22 }, 3));
 	}
 }
+

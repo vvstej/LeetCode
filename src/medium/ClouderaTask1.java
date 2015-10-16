@@ -20,9 +20,9 @@ public class ClouderaTask1 {
 			}
 		}
 		LongPairComparator comparator = new LongPairComparator();
-		List<Pair<Long,Integer>> listOfPairs = new ArrayList<Pair<Long,Integer>>();
+		List<Pair1<Long,Integer>> listOfPairs = new ArrayList<Pair1<Long,Integer>>();
 		for(int i=0;i<A.length;i++){
-			listOfPairs.add(new Pair<Long,Integer>((long)A[i],i));
+			listOfPairs.add(new Pair1<Long,Integer>((long)A[i],i));
 		}
 		Collections.sort(listOfPairs, comparator);
 		long minDistance = Long.MAX_VALUE;
@@ -45,9 +45,9 @@ public class ClouderaTask1 {
 	}
 }
 
-class LongPairComparator implements Comparator<Pair<Long,Integer>> {
+class LongPairComparator implements Comparator<Pair1<Long,Integer>> {
 	@Override
-	public int compare(Pair<Long,Integer> o1, Pair<Long,Integer> o2) {
+	public int compare(Pair1<Long,Integer> o1, Pair1<Long,Integer> o2) {
 		return o1.getX().compareTo(o2.getX());
 	}
 
@@ -71,7 +71,7 @@ class Pair<X,Y> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pair other = (Pair) obj;
+		Pair1 other = (Pair1) obj;
 		if (x == null) {
 			if (other.x != null)
 				return false;
