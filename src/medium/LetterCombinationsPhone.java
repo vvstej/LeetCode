@@ -39,7 +39,7 @@ public class LetterCombinationsPhone {
 	}
 	
 	public static void main(String[] arg){
-		List<String> results = new LetterCombinationsPhone().letterCombinations("234");
+		List<String> results = new LetterCombinationsPhone().letterCombinations("789");
 		for(String result : results){
 			System.out.println(result);
 		}
