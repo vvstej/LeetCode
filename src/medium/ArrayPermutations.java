@@ -49,12 +49,13 @@ public class ArrayPermutations {
     }
     
     public static void main(String[] arg){
-    	List<List<Integer>> newList = new ArrayPermutations().permute(new int[]{1});
+    	List<List<Integer>> newList = new ArrayPermutations().permute(new int[]{1,2,3});
     	for(List<Integer> list : newList){
     		for(int i : list){
     			System.out.print(i);
     		}
     		System.out.println();
     	}
+    	System.out.println(newList.size());
     }
 }
