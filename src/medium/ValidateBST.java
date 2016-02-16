@@ -42,7 +42,7 @@ public class ValidateBST {
         }
         if(isRightValidBST.isValid){
              if(root.right!=null){
-                if(root.val < root.right.val && root.val > isLeftValidBST.smallestNode){
+                if(root.val < root.right.val && root.val < isRightValidBST.smallestNode){
                     isRightValid = true;
                 }else{
                     isRightValid =  false;
@@ -51,31 +51,40 @@ public class ValidateBST {
         }else{
         	isRightValid =  false;
         }
-        
-        if(!isLeftValid || !isRightValid){
-        	Result r = new Result();
+        Result r = new Result();
+        if(!isLeftValid || !isRightValid){     	
         	r.isValid = false;
 			r.smallestNode = Integer.MAX_VALUE;
 			r.largestNode = Integer.MIN_VALUE;
         }
-		return isRightValidBST;
+        else{
+        	r.isValid = true;
+        	r.smallestNode = isLeftValidBST.smallestNode;
+        	r.largestNode = isRightValidBST.largestNode;
+        }
+		return r;
         
         
 		
 	}
 
     public boolean isValidBST(TreeNode root) {
-		return false;
+		return isValidBST1(root).isValid;
     	
         
     }
     public static void main(String[] arg){
     	TreeNode root = new TreeNode(10);
-    	TreeNode l1 = new TreeNode(5);
-    	TreeNode l2 = new TreeNode(15);
-    	l1.left=null;
-    	l1.right=null;
-    	
-    	TreeNode l4 = new TreeNode(3);
+    	TreeNode n1 = new TreeNode(5);
+    	TreeNode n2 = new TreeNode(15);
+    	TreeNode n3 = new TreeNode(1);
+    	TreeNode n4 = new TreeNode(8);
+    	TreeNode n5 = new TreeNode(7);
+    	root.left = n1;
+    	root.right = n2;
+    	n1.left = n3;
+    	n1.right = n4;
+    	n2.left = n5;
+    	System.out.println(new ValidateBST().isValidBST(root));
     }
 }
