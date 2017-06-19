@@ -2,29 +2,33 @@ package easy;
 
 public class MergeBinaryTrees {
     public TreeNode mergeTrees(final TreeNode t1, final TreeNode t2) {
-        final TreeNode result = null;
-        recursiveMerge(t1, t2, result);
+        final TreeNode result;
+        result = recursiveMerge(t1, t2);
         return result;
 
     }
 
-    private void recursiveMerge(final TreeNode t1, final TreeNode t2, TreeNode newTree) {
-        if (t1 == null && t2 == null) {
-            return;
+    private TreeNode recursiveMerge(final TreeNode t1, final TreeNode t2) {
+        TreeNode newTree;
+    	if (t1 == null && t2 == null) {
+            return null;
         }
         if (t1 == null) {
             newTree = new TreeNode(t2.val);
-            recursiveMerge(null, t2.left, newTree.left);
-            recursiveMerge(null, t2.right, newTree.right);
+            newTree.left = recursiveMerge(null, t2.left);
+            newTree.right = recursiveMerge(null, t2.right);
+            
+            
         } else if (t2 == null) {
             newTree = new TreeNode(t1.val);
-            recursiveMerge(t1.left, null, newTree.left);
-            recursiveMerge(t1.right, null, newTree.right);
+            newTree.left = recursiveMerge(t1.left, null);
+            newTree.right = recursiveMerge(t1.right, null);
         } else {
             newTree = new TreeNode(t1.val + t2.val);
-            recursiveMerge(t1.left, t2.left, newTree.left);
-            recursiveMerge(t1.right, t2.right, newTree.right);
+            newTree.left = recursiveMerge(t1.left, t2.left);
+            newTree.right = recursiveMerge(t1.right, t2.right);
         }
+        return newTree;
     }
     
     public static void main(final String [] arg) {
