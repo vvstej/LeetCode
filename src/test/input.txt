@@ -1,0 +1,5 @@
+App1;Type1;1000
+App2;Type2;1000
+App3;Type4;1000
+App4;Type5;1000
+App5;Type3;1000

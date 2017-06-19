@@ -1,0 +1,5 @@
+Type1;50
+Type2;50
+Type3;50
+Type4;50
+Type5;50
