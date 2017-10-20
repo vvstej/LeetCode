@@ -50,6 +50,28 @@ public class MergeKLists {
 		return finalResult;       
     }
     
+    public ListNode mergeKLists1(ListNode[] lists) {
+        if(lists==null || lists.length == 0) {
+            return null;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode result = dummy;
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<ListNode>(lists.length, (l1, l2) -> l1.val - l2.val);
+        for(int i=0;i<lists.length;i++) {
+            minHeap.offer(lists[i]);
+        }
+        while(!minHeap.isEmpty()) {
+            ListNode min = minHeap.poll();
+            result.next = min;
+            result = result.next;
+            if(result.next==null) continue;
+            else{
+                minHeap.offer(result.next);
+            }
+        }
+		return dummy.next;
+    }
+    
     public static void main(String[] arg){
     	ListNode l1 = new ListNode(30);
     	ListNode l2 = new ListNode(60);
@@ -63,7 +85,7 @@ public class MergeKLists {
     	l5.next = l6;
     	l6.next = new ListNode(70);
     	ListNode [] lists = new ListNode[]{l1,l3,l5,new ListNode(1)};
-    	ListNode list = new MergeKLists().mergeKLists(lists);
+    	ListNode list = new MergeKLists().mergeKLists1(lists);
     	while(list!=null){
     		System.out.println(list.val);
     		list = list.next;
