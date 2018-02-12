@@ -3,11 +3,38 @@ package medium;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 import easy.TreeNode;
 
 public class InOrderTraversalIterative {
+	
+	private int evaluate(String expr) {
+		Deque<String> operandStack = new LinkedList<>();
+		Deque<String> operatorStack = new LinkedList<>();
+		int index = 0;
+		while (index < expr.length()) {
+			int end = index;
+			while (!(expr.charAt(end) == '+' || expr.charAt(end) == '*' || expr.charAt(end) != ' '
+					|| end < expr.length())) {
+				end++;
+			}
+			operatorStack.push(expr.substring(index, end));
+			if (end < expr.length()) {
+
+				if (operandStack.isEmpty())
+					operandStack.push(Character.toString(expr.charAt(end)));
+				else {
+					if (operandStack.peek().equals("+")) {
+						evaluate(operatorStack.pop());
+					}
+				}
+			}
+		}
+		return index;
+
+	}
 
 	public List<Integer> inorderTraversal(TreeNode root) {
         if(root==null){
