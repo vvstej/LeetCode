@@ -2,9 +2,11 @@ package ik;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SubsetPartition {
 
+	//Queue q = new ConcurrentLinkedQueue<>();
 	private static boolean subsetPartition(int[] arr) {
 		int count = 0;
 		for (int val : arr) {
@@ -48,6 +50,11 @@ public class SubsetPartition {
 
 		return dp[dp.length - 1][dp[0].length - 1];
 
+	}
+	
+	private static void recursiveFind(List<Integer> subset, int[] arr, int index, int[][] dp, int[] dpIndex) {
+		int curr = arr[index];
+		
 	}
 
 	public static void main(String[] arg) {

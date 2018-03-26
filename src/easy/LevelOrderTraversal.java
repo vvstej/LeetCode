@@ -38,6 +38,50 @@ public class LevelOrderTraversal {
 		return resultList;
 	}
 	
+	public static void levelOrder1(TreeNode node) {
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		if(node!=null){
+			queue.add(node);
+			queue.add(null);
+		}
+		while(!queue.isEmpty()){
+			TreeNode curr = queue.remove();
+			if(curr==null) {
+				System.out.println("");
+				continue;
+			}
+			System.out.print(curr.val+" ");
+			if(node.left!=null)
+				queue.add(node.left);
+			if(node.right!=null)
+				queue.add(node.right);
+				
+		}
+	}
+	
+	public static void invert(TreeNode node) {
+		if(node==null) {
+			return;
+		}
+		invert(node.left);
+		invert(node.right);
+		TreeNode leftTemp = node.left;
+		node.left = node.right;
+		node.right = leftTemp;
+		return;
+	}
+	
+	public static void copyLeft(TreeNode node) {
+		if(node==null)
+			return;
+		copyLeft(node.left);
+		copyLeft(node.right);
+		TreeNode newNode = new TreeNode(node.val);
+		newNode.left = node.left;
+		newNode.right = node.right;
+		node.left = newNode;
+	}
+	
 	public static void main(String[] arg){
 		TreeNode root = new TreeNode(10);
 		root.left = new TreeNode(5);
